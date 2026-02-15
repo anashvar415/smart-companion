@@ -1,0 +1,450 @@
+/* --- 1. FONTS & VARIABLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Lexend:wght@300;400;600;800&display=swap');
+
+:root {
+  /* Colors */
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --glass: rgba(255, 255, 255, 0.8);
+
+  /* Typography Defaults */
+  --font-main: 'Inter', system-ui, sans-serif;
+  --line-height: 1.5;
+  --letter-spacing: normal;
+}
+
+/* --- 2. DYSLEXIA MODE OVERRIDES --- */
+body.dyslexic-mode {
+  --font-main: 'Lexend', sans-serif;
+  --bg-app: #f8f4e8; /* Soft Cream */
+  --text-main: #1a1a1a;
+  --line-height: 1.8;
+  --letter-spacing: 0.03em;
+}
+
+/* --- 3. GLOBAL STYLES --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
+  transition: background-color 0.4s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- 4. NAVIGATION (GLASSMORPHISM) --- */
+.glass-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  backdrop-filter: blur(12px);
+  background: var(--glass);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.streak-counter {
+  background: #ffedd5;
+  color: #ea580c;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+/* --- 5. MAIN LAYOUT & CARDS --- */
+.main-content {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  flex: 1;
+}
+
+.hero-card {
+  background: var(--bg-card);
+  padding: 2.5rem 2rem;
+  border-radius: 32px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.03);
+  text-align: center;
+  border: 1px solid white;
+}
+
+.hero-title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 0.8rem;
+}
+
+.hero-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* --- 6. INPUTS & BUTTONS --- */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.stylish-input {
+  width: 100%;
+  padding: 1.3rem 1.5rem;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  font-size: 1.1rem;
+  background: var(--bg-card);
+  transition: all 0.3s;
+}
+
+.stylish-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.mic-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.btn-glow {
+  width: 100%;
+  padding: 1.3rem;
+  border-radius: 20px;
+  background: var(--primary);
+  color: white;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-glow:disabled { opacity: 0.5; }
+.btn-glow:active:not(:disabled) { transform: scale(0.97); }
+
+.btn-success {
+  background: var(--success);
+  box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.2);
+}
+
+/* --- 7. PROGRESS & STEP UI --- */
+.visual-progress {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  padding: 6px 16px;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.step-number { font-weight: 900; color: var(--primary); }
+.step-divider { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; font-weight: 800; }
+.step-total { font-weight: 700; color: #64748b; }
+
+.timer-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fdfdfd;
+  border: 2px solid #f1f5f9;
+  padding: 14px;
+  border-radius: 22px;
+  margin: 2rem auto 0;
+  width: fit-content;
+}
+
+.timer-icon-bg {
+  background: #eef2ff;
+  color: var(--primary);
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.timer-content { display: flex; flex-direction: column; align-items: flex-start; }
+.timer-label { font-size: 0.6rem; font-weight: 800; color: #94a3b8; }
+.timer-value { font-size: 0.95rem; font-weight: 700; }
+
+/* --- 8. MODALS & OVERLAYS --- */
+.modal-overlay, .stuck-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1.5rem;
+}
+
+.settings-modal, .stuck-card {
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  padding: 2.2rem;
+  border-radius: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.stuck-card { border: 3px solid var(--primary); }
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* --- 9. DYSLEXIA TOGGLE SWITCH --- */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #cbd5e1;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider { background-color: var(--primary); }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* --- 10. ANIMATIONS --- */
+.float { animation: floating 3s ease-in-out infinite; }
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.bounce-in { animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+@keyframes bounceIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.animate-pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.animate-spin { animation: spin 1s linear infinite; }
+
+.help-text-footer {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.micro-timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #fdfdfd;
+  border-radius: 24px;
+  border: 2px solid #f1f5f9;
+}
+
+.timer-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-text {
+  position: absolute;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.timer-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  min-height: 48px;
+  align-items: center;
+}
+
+.timer-btn {
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.timer-btn.main {
+  background: var(--primary);
+  color: white;
+  padding: 10px 20px;
+}
+
+.timer-btn.reset {
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 10px;
+}
+
+.timer-alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  padding: 8px 16px;
+  border-radius: 16px;
+  color: #e11d48;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.timer-retry-btn {
+  background: white;
+  border: 1px solid #fecdd3;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.streak-badge-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.streak-counter {
+  background: #fff7ed;
+  color: #ea580c;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 2px solid #ffedd5;
+}
+/* Add these for visual feedback */
+.energy-low { border-left: 8px solid #60a5fa; } /* Calm Blue */
+.energy-high { border-left: 8px solid #f59e0b; } /* High Energy Orange */
+
+/* Use the profile.maxStepsVisible to limit the list height */
+.step-container {
+  max-height: calc(var(--max-steps) * 100px);
+}
