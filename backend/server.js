@@ -45,7 +45,10 @@ const stuckSchema = {
   },
   required: ["smallerSteps", "options", "encouragement"]
 };
-
+// --- HEALTH CHECK ROUTE ---
+app.get('/', (req, res) => {
+  res.send("Smart Companion Backend is ALIVE and running!");
+});
 // --- ROUTE 1: MAIN DECOMPOSITION ---
 app.post('/api/decompose', async (req, res) => {
   try {
